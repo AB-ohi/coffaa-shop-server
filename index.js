@@ -38,6 +38,20 @@ async function run() {
       res.send(result);
     })
 
+    app.get ('/coffee/:id', async(req,res)=>{
+      const id = req.params.id;
+      const query = {_id: new Object(id)}
+      const result = await coffeeCollection.findOne(query)
+      res.send(result)
+    })
+
+    app.delete('/coffee/:id', async(req,res)=>{
+      const  id = req.params.id;
+      const query = {_id: new Object(id)}
+      const result = await coffeeCollection.deleteOne(query)
+      res.send(result);
+    })
+
 
     await client.connect();
     // Send a ping to confirm a successful connection
